@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>
+    Overview
+</h1> 
+<h2>
+    Single-scale Aligning
+</h2>
+<p>
+    I use normalized cross-correlation (NCC) to align RGB images. 
+</p>   
+<p>
+    Because borders of the images will probably hurtmy results, I use "window", an area in the image center, to calculate NCC.
+    I can change the area of window by setting the window rate.
+</p> 
+<p>
+    In order to align RGB images, I shift windows along the x and y directions. I can change the shifting range by setting the window rate.
+    In every position, I calculate a new NCC value. And the position with the largest NCC value is the aligned position.
+</p> 
+<p>
+    NCC is calculated by the following formula.
+</p> 
+<img src="formula.jpg" />
+<h2>
+    Multi-scale Aligning
+</h2>
+<p>
+    Multi-scale Aligning is using Single-scale Aligning four times on image pyramid. First, I rescale the image to 1/2, 1/4 and 
+    1/8 sizes to bulid a image pyramid. Then I align the images in the image pyramid from bottom to the top. Every time a image
+    is aligned, the images smaller than it will be updated for better positions.
+</p>
+<h1>
+    Results of given iamges
+</h1> 
+<h2>
+    cathedral
+</h2>
+<img src="out_path\cathedral.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 5, "w": 2}; 
+    red offset: {"h": 12, "w": 3}
+</p>
+<h2>
+    emir
+</h2>
+<img src="out_path\emir.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 49, "w": 24}; 
+    red offset: {"h": 69, "w": 44}
+</p>
+<h2>
+    harvesters
+</h2>
+<img src="out_path\harvesters.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 60, "w": 17}; 
+    red offset: {"h": 124, "w": 14}
+</p>
+<h2>
+    icon
+</h2>
+<img src="out_path\icon.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 41, "w": 17}; 
+    red offset: {"h": 89, "w": 23}
+</p>
+<h2>
+    lady
+</h2>
+<img src="out_path\lady.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 55, "w": 9}; 
+    red offset: {"h": 117, "w": 12}
+</p>
+<h2>
+    melons
+</h2>
+<img src="out_path\melons.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 81, "w": 10}; 
+    red offset: {"h": 178, "w": 12}
+</p>
+<h2>
+    monastery
+</h2>
+<img src="out_path\monastery.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": -3, "w": 2}; 
+    red offset: {"h": 3, "w": 2}
+</p>
+<h2>
+    onion_church
+</h2>
+<img src="out_path\onion_church.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 51, "w": 27}; 
+    red offset: {"h": 108, "w": 36}
+</p>
+<h2>
+    self_portrait
+</h2>
+<img src="out_path\self_portrait.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 78, "w": 28}; 
+    red offset: {"h": 174, "w": 20}
+</p>
+<h2>
+    three_generations
+</h2>
+<img src="out_path\three_generations.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 52, "w": 14}; 
+    red offset: {"h": 111, "w": 11}
+</p>
+<h2>
+    tobolsk
+</h2>
+<img src="out_path\tobolsk.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 3, "w": 2}; 
+    red offset: {"h": 6, "w": 3}
+</p>
+<h2>
+    train
+</h2>
+<img src="out_path\train.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 43, "w": 6}; 
+    red offset: {"h": 87, "w": 32}
+</p>
+<h2>
+    village
+</h2>
+<img src="out_path\village.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 65, "w": 12}; 
+    red offset: {"h": 137, "w": 22}
+</p>
+<h2>
+    workshop
+</h2>
+<img src="out_path\workshop.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 53, "w": 0}; 
+    red offset: {"h": 105, "w": -12}
+</p>
+<h1>
+    Results of my own choosing images
+</h1>
+<h2>
+    buildings
+</h2>
+<img src="out_path\buildings.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 40, "w": 12}; 
+    red offset: {"h": 87, "w": 32}
+</p>
+<h2>
+    three_girls
+</h2>
+<img src="out_path\three_girls.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": -16, "w": 10}; 
+    red offset: {"h": 11, "w": 18}
+</p>
+<h2>
+    wooden_church
+</h2>
+<img src="out_path\wooden_church.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 10, "w": 14}; 
+    red offset: {"h": 35, "w": 30}
+</p>
+<h1>
+    Bells & Whistles
+</h1>
+<p>
+    Edge information is information that remains constant in an RGB image and is more suitable for aligning.
+</p>
+<p>
+    I use edge filter to extract edge information from RGB images. The result is as follow.
+</p>
+<img src="display\emir_b.jpg" width="400" height="400"/>
+<img src="display\emir_g.jpg" width="400" height="400"/>
+<img src="display\emir_r.jpg" width="400" height="400"/>
+<p>
+    Using the edge information, the emir.tif is aligned better:
+</p>
+<h2>
+    emir
+</h2>
+<img src="out_path\bells_whistles\emir.jpg" width="400" height="400"/>
+<p>
+    green offset: {"h": 49, "w": 24}; 
+    red offset: {"h": 107, "w": 40}
+</p>
+</body>
+</html>

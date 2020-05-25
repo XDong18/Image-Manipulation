@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+          padding: 100px;
+          width: 1000px;
+          margin: auto;
+          text-align: left;
+          font-weight: 300;
+          font-family: 'Open Sans', sans-serif;
+          color: #121212;
+        }
+        h1, h2, h3, h4 {
+          font-family: 'Source Sans Pro', sans-serif;
+        }
+      </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cs194 p4</title>
+</head>
+<body>
+<h1 align='center'>Classification and Segmentation</h1>
+
+<h2 align='center'>Classification</h2>
+
+<h3>Model Architecture</h3>
+<center><img src='model1.jpg' width=180 height=400></center>
+<P>Loss: CrossEntropyLoss</P>
+<P>Optimizer: SGD(lr=0.01, weight_decay=1e-4, momentum=0.9</P>
+<h3>Train accuracy</h3>
+<center><img src='accuracy_train.svg' width=600 height=480></center>
+<h3>Validation accuracy</h3>
+<center><img src='accuracy_val.svg' width=600 height=480></center>
+<h3>Per class accuracy</h3>
+<center>
+    <table border="1">
+        <tr>
+        <td>'T-shirt/top'</td><td>'Trouser'</td><td>'Pullover'</td><td>'Dress'</td><td>'Coat'</td>
+        <td>'Sandal'</td><td>'Shirt'</td><td>'Sneaker'</td><td>'Bag'</td><td>'Ankle boot'</td><td>Total</td>
+        </tr>
+        <tr>
+        <td>83.3</td><td>98.5</td><td>89.1</td><td>92.4</td><td>82.1</td>
+        <td>98.1</td><td>73.4</td><td>96.0</td><td>97.0</td><td>95.9</td><td>90.58</td>
+        </tr>
+        </table>
+</center>
+
+<h3>Right examples</h3>
+<h4>'T-shirt/top'</h4>
+<center>
+    <img src='test\0_test_image_19.jpg' width=200 height=200>
+    <img src='test\0_test_image_27.jpg' width=200 height=200>
+</center>
+<h4>'Trouser'</h4>
+<center>
+    <img src='test\1_test_image_2.jpg' width=200 height=200>
+    <img src='test\1_test_image_3.jpg' width=200 height=200>
+</center>
+<h4>'Pullover'</h4>
+<center>
+    <img src='test\2_test_image_1.jpg' width=200 height=200>
+    <img src='test\2_test_image_16.jpg' width=200 height=200>
+</center>
+<h4>'Dress'</h4>
+<center>
+    <img src='test\3_test_image_13.jpg' width=200 height=200>
+    <img src='test\3_test_image_29.jpg' width=200 height=200>
+</center>
+<h4>'Coat'</h4>
+<center>
+    <img src='test\4_test_image_6.jpg' width=200 height=200>
+    <img src='test\4_test_image_10.jpg' width=200 height=200>
+</center>
+<h4>'Sandal'</h4>
+<center>
+    <img src='test\5_test_image_8.jpg' width=200 height=200>
+    <img src='test\5_test_image_11.jpg' width=200 height=200>
+</center>
+<h4>'Shirt'</h4>
+<center>
+    <img src='test\6_test_image_4.jpg' width=200 height=200>
+    <img src='test\6_test_image_7.jpg' width=200 height=200>
+</center>
+<h4>'Sneaker'</h4>
+<center>
+    <img src='test\7_test_image_9.jpg' width=200 height=200>
+    <img src='test\7_test_image_22.jpg' width=200 height=200>
+</center>
+<h4>'Bag'</h4>
+<center>
+    <img src='test\8_test_image_18.jpg' width=200 height=200>
+    <img src='test\8_test_image_30.jpg' width=200 height=200>
+</center>
+<h4>'Ankle boot'</h4>
+<center>
+    <img src='test\9_test_image_0.jpg' width=200 height=200>
+    <img src='test\9_test_image_28.jpg' width=200 height=200>
+</center>
+
+
+<h3>Wrong examples</h3>
+<h4>'T-shirt/top'</h4>
+<center>
+    <h4>'Trouser' & 'Pullover'</h4>
+    <img src='wr_test\wr_0_1.jpg' width=200 height=200>
+    <img src='wr_test\wr_0_2.jpg' width=200 height=200>
+</center>
+<h4>'Trouser'</h4>
+<center>
+    <h4>'Pullover' & 'Dress'</h4>
+    <img src='wr_test\wr_1_2.jpg' width=200 height=200>
+    <img src='wr_test\wr_1_3.jpg' width=200 height=200>
+</center>
+<h4>'Pullover'</h4>
+<center>
+    <h4>'Dress' & 'Coat'</h4>
+    <img src='wr_test\wr_2_3.jpg' width=200 height=200>
+    <img src='wr_test\wr_2_4.jpg' width=200 height=200>
+</center>
+<h4>'Dress'</h4>
+<center>
+    <h4>'Coat' & 'Shirt'</h4>
+    <img src='wr_test\wr_3_4.jpg' width=200 height=200>
+    <img src='wr_test\wr_3_6.jpg' width=200 height=200>
+</center>
+<h4>'Coat'</h4>
+<center>
+    <h4>'Pullover' & 'Shirt'</h4>
+    <img src='wr_test\wr_4_2.jpg' width=200 height=200>
+    <img src='wr_test\wr_4_6.jpg' width=200 height=200>
+</center>
+<h4>'Sandal'</h4>
+<center>
+    <h4>'Sneaker' & 'Ankle boot'</h4>
+    <img src='wr_test\wr_5_7.jpg' width=200 height=200>
+    <img src='wr_test\wr_5_9.jpg' width=200 height=200>
+</center>
+<h4>'Shirt'</h4>
+<center>
+    <h4>'T-shirt/top' & 'Pullover'</h4>
+    <img src='wr_test\wr_6_0.jpg' width=200 height=200>
+    <img src='wr_test\wr_6_2.jpg' width=200 height=200>
+</center>
+<h4>'Sneaker'</h4>
+<center>
+    <h4>'Sandal' & 'Ankle boot'</h4>
+    <img src='wr_test\wr_7_5.jpg' width=200 height=200>
+    <img src='wr_test\wr_7_9.jpg' width=200 height=200>
+</center>
+<h4>'Bag'</h4>
+<center>
+    <h4>'T-shirt/top' & 'Shirt'</h4>
+    <img src='wr_test\wr_8_0.jpg' width=200 height=200>
+    <img src='wr_test\wr_8_6.jpg' width=200 height=200>
+</center>
+<h4>'Ankle boot'</h4>
+<center>
+    <h4>'Sandal' & 'Sneaker'</h4>
+    <img src='wr_test\wr_9_5.jpg' width=200 height=200>
+    <img src='wr_test\wr_9_7.jpg' width=200 height=200>
+</center>
+
+
+<h3>Learned filters</h3>
+<center>
+    <h4>32 filters in the first convolution layer</h4>
+    <img src=f_1.jpg width=490 height=250>
+</center>
+<center>
+    <h4>32*32 filters in the second convolution layer</h4>
+    <img src=f_2.jpg width=965 height=965>
+</center>
+
+<h2 align='center'>Segmentation</h2>
+<h3>Model Architecture</h3>
+<center>
+    <img src=model2.jpg width=600 height=500>
+</center>
+<p>
+    Each block in the image includes convolution, BatchNorm and ReLU. And the "Down" block also have a maxpooling layer 
+    to half the image size. The "Up" block first upsample the output of the last block and concatenates it with the output 
+    of another block, which has the same size.
+</p>
+
+<h3>Loss across iterations</h3>
+<center>
+    <img src='curve2.jpg' width=800 height=600>
+</center>
+<h3>Average precision</h3>
+<center>
+    <table border="1">
+        <tr>
+        <td>'others'</td><td>'facade'</td><td>'pillar'</td><td>'window'</td><td>'balcony'</td><td>mean</td>
+        </tr>
+
+        <tr>
+        <td>61.08</td><td>71.68</td><td>21.74</td><td>83.99</td><td>52.14</td><td>58.12</td>
+        </tr>
+        </table>
+</center>
+
+<h3>Result on my picture</h3>
+<center>
+    <h4>Input</h4>
+    <img src='p.jpg' width=256 height=256>
+</center>
+<center>
+    <h4>Result</h4>
+    <img src='test.jpg' width=256 height=256>
+</center>
+<p>
+    The model does good on windows, but it cannot segment the pillars very well. I think the reason is the data of pillars 
+    is small, which is not enough for the model to learn the feature of pillars. Besides, the model has diffculty when segment 'facade'
+     and 'others'. The reason may be that there is no stable feature of 'others' class.
+</p>
+</body>
+</html>

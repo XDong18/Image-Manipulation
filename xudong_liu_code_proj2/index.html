@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1>
+    P1.1
+</h1>
+<p>
+    I created a finite difference operator for the horizontal and vertical directions of the image. Dx = [1, -1] and Dy = [1, -1].T. 
+    Applying these filters will take the x partial derivative and y partial derivative, respectively, of the image. 
+    Then, I used these partial derivatives to calculate the gradient magnitude: Grad_Mag = SQRT(Dx**2 + Dy**2).
+</p>
+<h3>
+    horizontal
+</h3>
+<img src="p1.1\dx.jpg" width="400" height="400"/>
+<h3>
+    vertical
+</h3>
+<img src="p1.1\dy.jpg" width="400" height="400"/>
+<h3>
+    gradient
+</h3>
+<img src="p1.1\grad.jpg" width="400" height="400"/>
+<p>
+    I used threshold 75 to get the edge image
+</p>
+<h3>
+    edge
+</h3>
+<img src="p1.1\edge.jpg" width="400" height="400"/>
+<h1>
+    P1.2
+</h1>
+<p>
+    I used a 7x7 size filter with standard deviation of 2, to remove some of the noise from the image.
+</p>
+<h3>
+    blur image
+</h3>
+<img src="p1.2\bler.jpg" width="400" height="400"/>
+<h3>
+    horizontal
+</h3>
+<img src="p1.2\bl_dx.jpg" width="400" height="400"/>
+<h3>
+    vertical
+</h3>
+<img src="p1.2\bl_dy.jpg" width="400" height="400"/>
+<h3>
+    gradient
+</h3>
+<img src="p1.2\grad.jpg" width="400" height="400"/>
+<p>
+    I used threshold 35 to get the edge image
+</p>
+<h3>
+    edge
+</h3>
+<img src="p1.2\bl_edge.jpg" width="400" height="400"/>
+
+
+<h1>
+    P1.3
+</h1>
+<p>
+    I first converted all images to grayscale in order to convolve with the DoG filter. I iterated through a small range of angles 
+    (-4 degrees to 4 degrees in steps of 0.2 degrees). For each angle, after computing the DoG values for both the x-axis and y-axis,
+     I computed the direction of each gradient using arctan(-y/x). A histogram is formed using the computed angle values. 
+</p>
+<h3>
+    original
+</h3>
+<img src="facade.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\facade\0.0rotated.jpg" width="400" height="400"/>
+
+<h3>
+    straightened
+</h3>
+<img src="p1.3\facade\resultrotated.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\facade\-4.4rotated.jpg" width="400" height="400"/>
+<h2>
+    Example: building
+</h2>
+
+<h3>
+    original
+</h3>
+<img src="building.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\building\0.0rotated.jpg" width="400" height="400"/>
+
+<h3>
+    straightened
+</h3>
+<img src="p1.3\building\resultrotated.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\building\3.5rotated.jpg" width="400" height="400"/>
+
+<h2>
+    Example: city
+</h2>
+
+<h3>
+    original
+</h3>
+<img src="city.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\city\0.0rotated.jpg" width="400" height="400"/>
+
+<h3>
+    straightened
+</h3>
+<img src="p1.3\city\resultrotated.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\city\3.5rotated.jpg" width="400" height="400"/>
+
+<h2>
+    Example: rail
+</h2>
+
+<h3>
+    original
+</h3>
+<img src="p1.3\rail\resultrotated.jpg" width="400" height="400"/>
+
+<h4>
+    histogram
+</h4>
+<img src="p1.3\rail\3.5rotated.jpg" width="400" height="400"/>
+
+
+<h3>
+    straightened
+</h3>
+<img src="rail.jpg" width="400" height="400"/>
+<h4>
+    histogram
+</h4>
+<img src="p1.3\rail\0.0rotated.jpg" width="400" height="400"/>
+
+<h1>
+    P2.1
+</h1>
+<p>
+    To sharpen an image, we can increase the high frequencies. 
+    By applying the gaussian filter as a low pass filter to an image, 
+    we can obtain the low frequencies of the image and then subtract the low frequencies from the original image 
+    to obtain the high frequencies.
+</p>
+
+<h3>
+    original
+</h3>
+<img src="taj.jpg" width="400" height="400"/>
+<h3>
+    sharpened 
+</h3>
+<img src="p2.1\sharped_taj.jpg" width="400" height="400"/>
+
+<h2>
+    Example: lion
+</h2>
+
+<h3>
+    original
+</h3>
+<img src="lion.jpg" width="400" height="400"/>
+<h3>
+    sharpened 
+</h3>
+<img src="p2.1\sharped_lion.jpg" width="400" height="400"/>
+
+<h2>
+    Blur and shapren
+</h2>
+<h3>
+    original
+</h3>
+<img src="flower.jpg" width="400" height="400"/>
+<h3>
+    blur
+</h3>
+<img src="p2.1\blured_flower.jpg" width="400" height="400"/>
+<h3>
+    sharpened 
+</h3>
+<img src="p2.1\sharped_flower.jpg" width="400" height="400"/>
+
+<p>
+    We can not get the original image by sharpening. Because sharpening cannot add new information.
+</p>
+    
+<h1>
+    P2.2
+</h1>
+<p>
+    By blending the high and low frequencies of an image, we can create a hybrid image  
+    At close range, the high frequencies are most prominent, while at long range the viewer can only see the low frequencies.
+</p>
+<h3>
+    cat and Derek
+</h3>
+<img src="p2.2\Derek_cat.jpg" width="400" height="400"/>
+<h3>
+    low frequency fft 
+</h3>
+<img src="p2.2\DerekPicture_low_fft.jpg" width="400" height="400"/>
+
+<h3>
+    high frequency fft 
+</h3>
+<img src="p2.2\nutmeg_high_fft.jpg" width="400" height="400"/>
+
+<h3>
+    both frequencies fft 
+</h3>
+<img src="p2.2\DerekPicturenutmeg_hybrid.jpg" width="400" height="400"/>
+
+<h3>
+    puppy and man
+</h3>
+<img src="p2.2\man_puppy.jpg" width="400" height="400"/>
+
+<h3>
+    low frequency fft 
+</h3>
+<img src="p2.2\man_low_fft.jpg" width="400" height="400"/>
+
+<h3>
+    high frequency fft 
+</h3>
+<img src="p2.2\puppy_high_fft.jpg" width="400" height="400"/>
+
+<h3>
+    both frequencies fft 
+</h3>
+<img src="p2.2\manpuppy_hybrid.jpg" width="400" height="400"/>
+
+<h3>
+Bells & Whistles
+</h3>
+<p>
+The hybrid image looks better, By applying color filters to both the high and low frequencies.
+</p>
+
+<h1>
+    P2.3
+</h1>
+
+<p>
+    A gaussian stack is created by starting with a gaussian kernel and at each level down the stack increasing the size and sigma
+     of the kernel. A Laplacian stack is created by starting with a laplacian filter and at each level down the stack increasing the size and sigma
+     of the kernel. 
+</p>
+
+<h3>
+    Gaussian Stack
+</h3>
+<img src="p2.3\gussian0lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian1lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian2lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian3lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian4lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian5lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian6lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian7lincoln_stack.jpg" width="400" height="400"/>
+
+<h3>
+    Laplacian Stack
+</h3>
+<img src="p2.3\laplacian0lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian1lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian2lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian3lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian4lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian5lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian6lincoln_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian7lincoln_stack.jpg" width="400" height="400"/>
+
+<h2>
+    Example: Moan Lisa
+</h2>
+
+<h3>
+    Gaussian Stack
+</h3>
+<img src="p2.3\gussian0monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian1monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian2monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian3monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian4monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian5monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian6monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\gussian7lmonalisa_stack.jpg" width="400" height="400"/>
+
+<h3>
+    Laplacian Stack
+</h3>
+<img src="p2.3\laplacian0monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian1monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian2monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian3monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian4monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian5monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian6monalisa_stack.jpg" width="400" height="400"/>
+<img src="p2.3\laplacian7monalisa_stack.jpg" width="400" height="400"/>
+
+<h1>
+    P2.4
+</h1>
+
+<p>
+    To get a smooth blending image, we need to build a laplacian stack first. Then we use different mask with increasing weights
+    to get different parts of the blending image.
+</p>
+
+<h3>
+    Apple and Orange
+</h3>
+<img src="test2.jpg" width="400" height="400"/>
+<h4>
+    Apple Laplacian Stack
+</h4>
+<img src="p2.4\laplacian0apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian1apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian2apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian3apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian4apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian5apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian6apple.jpeg" width="400" height="400"/>
+<img src="p2.4\laplacian7apple.jpeg" width="400" height="400"/>
+<h3>
+    Fall and Spring
+</h3>
+<img src="test.jpg" width="400" height="400"/>
+</body>
+</html>

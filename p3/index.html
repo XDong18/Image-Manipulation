@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<h1 align='center'>   
+    Project 3: Face Morphing and Modelling a Photo Collection
+</h1>
+
+<h2 align='center'>
+    Defining Correspondences
+</h2>
+
+<p>
+    The first step of face morphing is to define pairs of corresponding points on the two images by hand. In Python, I used 
+    ginput() function to define two set of keypoints of two images with the same ordering. In addition, I included the four 
+    corners of each image((0, height-1), (width-1, height-1), (0,0), (width-1, 0)) in to the keypoints set.
+</p>
+<p>
+    After defining pairs of corresponding points, I used Dalaunay() in Python to provide a triangulation of these points. 
+    In order to lessen the potential triangle deformations, I compute the triangulation at the mean of the two keypoint sets. 
+</p>
+<h4>
+    Face 1 keypoints 
+</h4>
+<img src='tri_a.jpg' width=450 height=450>
+
+<h4>
+    Face 2 keypoints
+</h4>
+<img src='tri_b.jpg' width=450 height=450>
+
+
+<h2 align='center'>
+    Computing the "Mid-way Face"
+</h2>
+
+<h3>
+    Affine Trasnformation
+</h3>
+<p>
+    First, I need to compute Affine Transformation matrixes.
+</p>
+<img src=demo\matrix.jpg align='middle'>
+<p>
+    For each triangle, three original points and three transformed points can determine the six parameters in the transformation 
+    matrix. After computing the transformation matrix, We can transform each point inside the triangle from one image to 
+    another image. When computing the mid-way face, the target geometry is the mean of the two keypoint sets of two input images. 
+    For each triangle in target geometry, I computed the inverse warp and find the original triangle in original image.
+</p>
+<h3>
+    Averaging the colors
+</h3>
+<p>
+    After warp the geometry, target_corlor = 0.5 * color_of_image1 + 0.5 *  color_of_image2
+</p>
+
+<h4>
+    Face 1
+</h4>
+<img src='me_602.jpg' width=300 height=375>
+
+<h4>
+    Face 2
+</h4>
+<img src='george_small.jpg' width=300 height=375>
+
+<h4>
+    Mid-way Face 
+</h4>
+<img src='mid.jpg' width=300 height=375>
+
+<h2 align='center'>
+    The Morph Sequence
+</h2>
+<p>
+    Given a warp_frac, I computed the target geometry using: target_points = (1 - warp_frac) * image1_points + warp_frac * image2_points
+</p>
+<p>
+    Then I warped two input images to the target geometry using the computed Affine Transformation matrix.
+</p>
+<p>
+    Given a dissolve_frac, I computed the target color using: target_color = (1 - dissolve_frac) * image1_color + dissolve_frac * image2_color
+</p>
+<p>
+    By applying sequences of warp_frac and dissolve_frac, I can get a sequence of morphing images, which can be showed using .gif image. 
+</p>
+
+<h4>
+    Face 1
+</h4>
+<img src='me_602.jpg' width=300 height=375>
+
+<h4>
+    Face 2
+</h4>
+<img src='george_small.jpg' width=300 height=375>
+
+<h4>
+    Morph Sequence
+</h4>
+<img src='out2.gif' width=300 height=375>
+
+<h2 align='center'>
+    The "Mean face" of a population
+</h2>
+<p>
+    I use the Danes dataset to compute average faces.
+</p>
+<p>
+    The geometry of average face is the mean of keypoins sets of all images. And the color of average face is the mean of
+    color of all images.
+</p>
+
+<h4>
+    Average face of male(no smile)
+</h4>
+<img src='average\average.jpg' width=320 height=240>
+
+<h4>
+    Average face of male(smile)
+</h4>
+<img src='output\average\2m_average.jpg' width=320 height=240>
+
+<h4>
+    Average face of female
+</h4>
+<img src='average_f\average.jpg' width=320 height=240>
+
+<h4>
+    My face warped into the average geometry of male
+</h4>
+<img src='output\change_geo\me_133_average.jpg' width=320 height=240>
+<h4>
+    Average face of male warped into my geometry
+</h4>
+<img src='output\change_geo\average_me_133.jpg' width=320 height=240>
+
+<h2 align='center'>
+    caricatures: Extrapolating from the mean
+</h2>
+<p>
+    In order to creature, I need to highlight my characteristics. So I extrapolated my face from the population mean by using negtive warp_frac to morph my face.
+</p>
+<h4>
+    Caricature
+</h4>
+<img src='output\caricatures\caricature.jpg' width=320 height=240>
+
+<h2 align='center'>
+    Bells and Whistles: Change Smile
+</h2>
+<p>
+    By adding the difference of average smile face and no-smile face to my face geometry, I can change my smile.
+</p>
+<h4>
+    No-smile face
+</h4>
+<img src='me_133.jpg' width=320 height=240>
+<h4>
+    Smile face
+</h4>
+<img src='output\change\change.jpg' width=320 height=240>
+</body>
+</html>

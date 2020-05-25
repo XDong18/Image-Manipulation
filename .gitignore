@@ -1,0 +1,15 @@
+*.jpg
+*.yml
+LICENSE
+*.png
+*.jpeg
+*.zip
+*.rar
+imm/
+*.history/
+*.log
+*__pycache__/
+*.pdf
+*.tif
+*.json
+*.vscode/
